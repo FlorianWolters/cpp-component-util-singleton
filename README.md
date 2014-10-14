@@ -66,10 +66,11 @@ Please see [CONTRIBUTING](CONTRIBUTING.md) for details.
 
 ## License
 
-         Copyright Florian Wolters 2014.
-Distributed under the Boost Software License, Version 1.0.
-   (See accompanying file [LICENSE_1_0.txt](LICENSE_1_0.txt) or copy at
-         <http://www.boost.org/LICENSE_1_0.txt>)
+Copyright Florian Wolters 2014.
+
+Distributed under the Boost Software License, Version 1.0. (See accompanying
+file [LICENSE_1_0.txt](LICENSE_1_0.txt) or copy at
+<http://www.boost.org/LICENSE_1_0.txt>)
 
 [1]: http://cmake.org
      "CMake"
