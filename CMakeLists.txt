@@ -7,7 +7,7 @@
 
 project(cpp-component-util-singleton)
 
-cmake_minimum_required(VERSION 2.8.12)
+cmake_minimum_required(VERSION 2.8.11)
 
 add_executable(main src/main.cc)
 
