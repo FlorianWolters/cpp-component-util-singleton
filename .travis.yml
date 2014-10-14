@@ -37,13 +37,7 @@ before_script:
   - cd build
   - cmake ..
 
-script:
-  - clang++ --version
-  - gcc --version
-  - ld --version
-  - cmake --version
-  - make --version
-  - make
+script: make
 
 notifications:
   email:
