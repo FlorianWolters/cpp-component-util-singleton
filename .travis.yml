@@ -21,7 +21,7 @@ before_install:
   # Install Google Test.
   - sudo apt-get install libgtest-dev
   - cd /usr/src/gtest
-  - mkdir build
+  - sudo mkdir build
   - cd build
   - sudo cmake ..
   - sudo make
