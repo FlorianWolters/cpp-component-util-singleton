@@ -2,7 +2,7 @@
 
 The Singleton creational design pattern as a C++ component.
 
-[![Build Status](https://travis-ci.org/FlorianWolters/cpp-component-util-singleton.svg?branch=master)](https://travis-ci.org/FlorianWolters/cpp-component-util-singleton)
+[![Build Status](https://travis-ci.org/FlorianWolters/cpp-component-util-singleton.svg)](https://travis-ci.org/FlorianWolters/cpp-component-util-singleton)
 
 ## Table of Contents (ToC)
 
@@ -61,8 +61,8 @@ Please see [CONTRIBUTING](CONTRIBUTING.md) for details.
 
 ## Credits
 
-* [Florian Wolters][9]
-* [All Contributors][50]
+* [Florian Wolters][100]
+* [All Contributors][101]
 
 ## License
 
@@ -77,3 +77,7 @@ Distributed under the Boost Software License, Version 1.0.
      "GCC, the GNU Compiler Collection"
 [3]: https://code.google.com/p/googletest
      "Google Test"
+[100]: https://github.com/FlorianWolters
+       "FlorianWolters · GitHub"
+[101]: https://github.com/FlorianWolters/cpp-component-util-singleton/contributors
+       "Contributors to FlorianWolters/cpp-component-util-singleton"
