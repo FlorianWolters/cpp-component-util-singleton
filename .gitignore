@@ -1,1 +1,11 @@
+# .gitignore
+#
+# Specifies intentionally untracked files to ignore for the distributed version
+# control system "Git".
+#
+# Copyright Florian Wolters 2014 (http://blog.florianwolters.de).
+#
+# Distributed under the Boost Software License, Version 1.0. (See accompanying
+# file LICENSE_1_0.txt or copy at http://www.boost.org/LICENSE_1_0.txt)
+
 build/
