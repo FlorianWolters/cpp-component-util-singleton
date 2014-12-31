@@ -60,6 +60,9 @@ script:
   # Run GNU Make.
   - make
 
+  # Run CTest.
+  - ctest -V
+
 notifications:
   email:
     on_success: change
