@@ -115,9 +115,9 @@ file [LICENSE_1_0.txt](LICENSE_1_0.txt) or copy at
      "GCC, the GNU Compiler Collection"
 [3]: https://code.google.com/p/googletest
      "Google Test"
-[10]: include/fw/util/singleton_mixin.cc
+[10]: include/fw/util/singleton_mixin.h
       "fw::util::SingletonMixin"
-[11]: include/fw/util/multiton_mixin.cc
+[11]: include/fw/util/multiton_mixin.h
       "fw::util::MultitonMixin"
 [100]: https://github.com/FlorianWolters
        "FlorianWolters · GitHub"
