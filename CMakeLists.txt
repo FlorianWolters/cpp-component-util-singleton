@@ -9,7 +9,7 @@
 
 set(PROJECT_NAME "cpp-component-util-singleton")
 
-project(${PROJECT_NAME} LANGUAGES CXX)
+project(${PROJECT_NAME})
 cmake_minimum_required(VERSION 2.8.11)
 enable_testing()
 
