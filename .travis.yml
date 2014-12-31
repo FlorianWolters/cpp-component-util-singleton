@@ -2,10 +2,10 @@
 #
 # YAML configuration file for the continuous integration platform "Travis CI".
 #
-#          Copyright Florian Wolters 2014.
-# Distributed under the Boost Software License, Version 1.0.
-#    (See accompanying file LICENSE_1_0.txt or copy at
-#          http://www.boost.org/LICENSE_1_0.txt)
+# Copyright Florian Wolters 2014 (http://blog.florianwolters.de).
+#
+# Distributed under the Boost Software License, Version 1.0. (See accompanying
+# file LICENSE_1_0.txt or copy at http://www.boost.org/LICENSE_1_0.txt)
 
 language: cpp
 
@@ -14,12 +14,32 @@ compiler:
   - gcc
 
 before_install:
-  - sudo add-apt-repository -y ppa:ubuntu-toolchain-r/test
+  # Add Advanced Packaging Tool (APT) repository for CMake.
   - sudo add-apt-repository -y ppa:kalakris/cmake
+
+  # Add APT repository for GCC.
+  - if [ "$CXX" == "g++" ]; then sudo add-apt-repository -y ppa:ubuntu-toolchain-r/test; fi
+
+  # Add APT repository for Clang.
+  - if [ "$CXX" == "clang++" ]; then sudo add-apt-repository -y ppa:h-rayflood/llvm; fi
+
+  # Re-synchronize the package index files from their sources.
   - sudo apt-get update -qq
+
+install:
+  # Install CMake.
   - sudo apt-get install -qq cmake
-  # Install and build Google Test.
+
+  # Install GCC.
+  - if [ "$CXX" == "g++" ]; then sudo apt-get install -qq g++-4.8; export CXX="g++-4.8" CC="gcc-4.8"; fi
+
+  # Install Clang.
+  - if [ "$CXX" == "clang++" ]; then sudo apt-get install --allow-unauthenticated -qq clang-3.4; export CXX="clang++-3.4"; fi
+
+  # Install Google Test.
   - sudo apt-get install libgtest-dev
+
+  # Build Google Test.
   - cd /usr/src/gtest
   - sudo mkdir build
   - cd build
@@ -28,16 +48,17 @@ before_install:
   - sudo mv libgtest* /usr/lib
   - cd "${TRAVIS_BUILD_DIR}"
 
-install:
-  - if [ "$CXX" = "clang++" ]; then sudo apt-get install -qq libstdc++-4.8-dev; fi
-  - if [ "$CXX" = "g++" ]; then sudo apt-get install -qq g++-4.8; export CXX="g++-4.8" CC="gcc-4.8"; fi
-
 before_script:
-  - mkdir build
-  - cd build
-  - cmake ..
+  # Run CMake.
+  - mkdir build && cd build && cmake ..
 
-script: make
+script:
+  - cmake --version
+  - $CXX --version
+  - make --version
+
+  # Run GNU Make.
+  - make
 
 notifications:
   email:
