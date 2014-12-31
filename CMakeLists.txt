@@ -11,13 +11,12 @@ set(PROJECT_NAME "cpp-component-util-singleton")
 
 project(${PROJECT_NAME})
 cmake_minimum_required(VERSION 2.8.11)
-enable_testing()
 
 set(GTEST_MINIMUM_VERSION 1.7)
 
 if(WIN32)
-  set(GTEST_ROOT "C:/usr/lib")
-  set(GTEST_INCLUDE_DIR "C:/usr/include")
+    set(GTEST_ROOT "C:/usr/lib")
+    set(GTEST_INCLUDE_DIR "C:/usr/include")
 endif()
 
 set(PROJECT_FILE_EXTENSION_DECLARATION_FILE "h")
@@ -33,20 +32,27 @@ file(GLOB_RECURSE
      PROJECT_SOURCE_DECLARATION_FILES
      "${PROJECT_SOURCE_DIR_DECLARATION}/*.${PROJECT_FILE_EXTENSION_DECLARATION_FILE}")
 
-# Find "Google Test (GTest)".
-find_package(GTest ${GTEST_MINIMUM_VERSION} REQUIRED)
+option(BUILD_TESTS "Build the automated tests of the project (requires Boost.Test)." ON)
+if(BUILD_TESTS)
+    enable_testing()
 
-if(GTEST_FOUND)
-  include_directories(SYSTEM ${GTEST_INCLUDE_DIRS})
-  file(GLOB_RECURSE
-       PROJECT_SOURCE_DEFINITION_TEST_FILES
-       "${PROJECT_SOURCE_DIR_TEST}/*.${PROJECT_FILE_EXTENSION_DEFINITION_FILE}")
+    # Find "Threading" package.
+    find_package(Threads REQUIRED)
+    set(PROJECT_USED_TESTING_LIBRARIES ${PROJECT_USED_TESTING_LIBRARIES} ${CMAKE_THREAD_LIBS_INIT})
 
-  foreach(TEST_FILE ${PROJECT_SOURCE_DEFINITION_TEST_FILES})
-    get_filename_component(TEST_NAME ${TEST_FILE} NAME_WE)
-    add_executable(${TEST_NAME} ${TEST_FILE})
-    target_link_libraries(${TEST_NAME} ${GTEST_LIBRARIES} ${GTEST_MAIN_LIBRARIES})
-    add_test(NAME ${TEST_NAME}
-             COMMAND ${TEST_NAME})
-  endforeach()
+    # Find "Google Test (GTest)".
+    find_package(GTest ${GTEST_MINIMUM_VERSION} REQUIRED)
+
+    include_directories(SYSTEM ${GTEST_INCLUDE_DIRS})
+    set(PROJECT_USED_TESTING_LIBRARIES ${PROJECT_USED_TESTING_LIBRARIES} ${GTEST_BOTH_LIBRARIES})
+    file(GLOB_RECURSE
+         PROJECT_SOURCE_DEFINITION_TEST_FILES
+         "${PROJECT_SOURCE_DIR_TEST}/*.${PROJECT_FILE_EXTENSION_DEFINITION_FILE}")
+
+    foreach(TEST_FILE ${PROJECT_SOURCE_DEFINITION_TEST_FILES})
+        get_filename_component(TEST_NAME ${TEST_FILE} NAME_WE)
+        add_executable(${TEST_NAME} ${TEST_FILE})
+        target_link_libraries(${TEST_NAME} ${PROJECT_USED_TESTING_LIBRARIES})
+        add_test(NAME ${TEST_NAME} COMMAND ${TEST_NAME})
+    endforeach()
 endif()
