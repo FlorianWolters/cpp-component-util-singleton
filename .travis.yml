@@ -2,7 +2,9 @@
 #
 # YAML configuration file for the continuous integration platform "Travis CI".
 #
-# Copyright Florian Wolters 2014 (http://blog.florianwolters.de).
+# Author: Florian Wolters <wolters.fl@gmail.com>
+#
+# Copyright Florian Wolters (http://blog.florianwolters.de) 2014 - 2015.
 #
 # Distributed under the Boost Software License, Version 1.0. (See accompanying
 # file LICENSE_1_0.txt or copy at http://www.boost.org/LICENSE_1_0.txt)
@@ -14,14 +16,14 @@ compiler:
   - gcc
 
 before_install:
-  # Add the Ubuntu Personal Package Archive (PPA) hosting newer upstream
+  # Add the "Ubuntu" Personal Package Archive (PPA) hosting newer upstream
   # versions as an Advanced Packaging Tool (APT) repository.
   - sudo add-apt-repository -y ppa:ubuntu-toolchain-r/test
 
-  # Add the (unoffical) CMake PPA as an APT repository.
+  # Add the (unoffical) "CMake" PPA as an APT repository.
   - sudo add-apt-repository -y ppa:kalakris/cmake
 
-  # Add the official CLang website as an APT repository.
+  # Add the official "Clang" website as an APT repository.
   - if [ "$CXX" == "clang++" ]; then sudo add-apt-repository 'deb http://llvm.org/apt/precise/ llvm-toolchain-precise-3.5 main'; fi
   # Retrieve the archive signature for Clang.
   - wget -O - http://llvm.org/apt/llvm-snapshot.gpg.key | sudo apt-key add -
@@ -30,22 +32,22 @@ before_install:
   - sudo apt-get update -qq
 
 install:
-  # Install CMake.
+  # Install "CMake".
   - sudo apt-get install -qq cmake
 
-  # Install GNU Standard C++ Library.
+  # Install "GNU Standard C++ Library".
   - sudo apt-get install libstdc++-4.9-dev
 
-  # Install GCC.
+  # Install "GNU Compiler Collection (GCC)".
   - if [ "$CXX" == "g++" ]; then sudo apt-get install -qq g++-4.9; export CXX="g++-4.9" CC="gcc-4.9"; fi
 
-  # Install Clang.
+  # Install "Clang".
   - if [ "$CXX" == "clang++" ]; then sudo apt-get install clang-3.5; export CXX="clang++-3.5" CC="clang"; fi
 
-  # Install Google Test.
+  # Install "Google Test".
   - sudo apt-get install libgtest-dev
 
-  # Build Google Test.
+  # Build "Google Test".
   - cd /usr/src/gtest
   - sudo mkdir build
   - cd build
@@ -58,7 +60,7 @@ before_script:
   - mkdir build
   - cd build
 
-  # Run CMake.
+  # Configure the project.
   - cmake ..
 
 script:
@@ -66,10 +68,10 @@ script:
   - $CXX --version
   - make --version
 
-  # Run GNU Make.
-  - make
+  # Build the project.
+  - cmake --build .
 
-  # Run CTest.
+  # Test the project.
   - ctest -V
 
 notifications:
