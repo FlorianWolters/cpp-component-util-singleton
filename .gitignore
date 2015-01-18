@@ -3,9 +3,19 @@
 # Specifies intentionally untracked files to ignore for the distributed version
 # control system "Git".
 #
-# Copyright Florian Wolters 2014 (http://blog.florianwolters.de).
+# Author: Florian Wolters <wolters.fl@gmail.com>
+#
+# Copyright Florian Wolters (http://blog.florianwolters.de) 2014 - 2015.
 #
 # Distributed under the Boost Software License, Version 1.0. (See accompanying
 # file LICENSE_1_0.txt or copy at http://www.boost.org/LICENSE_1_0.txt)
 
+# Common directories.
 build/
+
+# The build system "CMake".
+CMakeFiles/
+CMakeCache.txt
+Makefile
+cmake_install.cmake
+install_manifest.txt
