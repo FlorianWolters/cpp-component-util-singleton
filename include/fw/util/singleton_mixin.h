@@ -35,7 +35,7 @@ namespace util {
  * @tparam TDerived The type of the derived class.
  */
 template <class TDerived>
-class SingletonMixin : private core::UncopyableMixin<MultitonMixin> {
+class SingletonMixin : public core::UncopyableMixin<SingletonMixin<TDerived>> {
  public:
   /**
    * Returns the *Singleton* instance of the class using this

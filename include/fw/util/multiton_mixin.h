@@ -40,7 +40,8 @@ namespace util {
  * @tparam TDerived The type of the derived class.
  */
 template <class TDerived, typename TKey = std::string>
-class MultitonMixin : private core::UncopyableMixin<MultitonMixin> {
+class MultitonMixin
+    : public core::UncopyableMixin<MultitonMixin<TDerived, TKey>> {
  public:
   /**
    * Returns the *Multiton* instance of the class using this
