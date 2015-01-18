@@ -11,7 +11,7 @@
  * file LICENSE_1_0.txt or copy at http://www.boost.org/LICENSE_1_0.txt)
  */
 
-#include <gtest/gtest.h>
+#include "gtest/gtest.h"
 
 #include "fw/util/multiton_mixin.h"
 
@@ -74,3 +74,9 @@ TEST(MultitonMixinTest, GetInstance_CalledTwiceWithNotEqualKeysAndNotEqualValues
 }  // namespace testing
 }  // namespace util
 }  // namespace fw
+
+int main(int argc, char **argv) {
+  testing::InitGoogleTest(&argc, argv);
+
+  return RUN_ALL_TESTS();
+}

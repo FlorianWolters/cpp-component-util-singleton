@@ -16,6 +16,8 @@
 
 #include <functional>
 
+#include "fw/core/uncopyable_mixin.h"
+
 namespace fw {
 namespace util {
 
@@ -33,7 +35,7 @@ namespace util {
  * @tparam TDerived The type of the derived class.
  */
 template <class TDerived>
-class SingletonMixin {
+class SingletonMixin : private core::UncopyableMixin<MultitonMixin> {
  public:
   /**
    * Returns the *Singleton* instance of the class using this
@@ -52,18 +54,6 @@ class SingletonMixin {
 
     return CallCreateInstance(function);
   }
-
-  /**
-   * Deleted copy constructor.
-   */
-  SingletonMixin(SingletonMixin const &) = delete;
-
-  /**
-   * Deleted assignment operator.
-   *
-   * @return n/a
-   */
-  SingletonMixin& operator=(SingletonMixin const &) = delete;
 
  protected:
   /**

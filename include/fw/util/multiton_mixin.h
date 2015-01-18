@@ -19,6 +19,8 @@
 #include <memory>
 #include <string>
 
+#include "fw/core/uncopyable_mixin.h"
+
 namespace fw {
 namespace util {
 
@@ -38,7 +40,7 @@ namespace util {
  * @tparam TDerived The type of the derived class.
  */
 template <class TDerived, typename TKey = std::string>
-class MultitonMixin {
+class MultitonMixin : private core::UncopyableMixin<MultitonMixin> {
  public:
   /**
    * Returns the *Multiton* instance of the class using this
@@ -64,18 +66,6 @@ class MultitonMixin {
         std::shared_ptr<TDerived>{
             new TDerived{kKey, std::forward<TArgs>(args)...}}).first->second;
   }
-
-  /**
-   * Deleted copy constructor.
-   */
-  MultitonMixin(MultitonMixin const &) = delete;
-
-  /**
-   * Deleted assignment operator.
-   *
-   * @return n/a
-   */
-  MultitonMixin& operator=(MultitonMixin const &) = delete;
 
  protected:
   /**
