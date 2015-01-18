@@ -91,5 +91,15 @@ else()
   # modules depend on some variables.
   # ----------------------------------------------------------------------------
 
+  # TODO(wolters): Improve framework. Maybe a two-step function approach should
+  # be used, to be able to separate project initialization and target creation.
+  include(ExternalProject)
+  set(PROJECT_DEPENDENCY_FLORIANWOLTERS_UNCOPYABLE_NAME "florianwolters-uncopyable")
+  ExternalProject_Add(${PROJECT_DEPENDENCY_FLORIANWOLTERS_UNCOPYABLE_NAME}
+                      GIT_REPOSITORY https://github.com/FlorianWolters/cpp-component-core-uncopyable.git
+                      INSTALL_COMMAND "")
+  ExternalProject_Get_Property(${PROJECT_DEPENDENCY_FLORIANWOLTERS_UNCOPYABLE_NAME} source_dir)
+  include_directories("${source_dir}/include")
+
   include("${PROJECT_SOURCE_DIR}/cmake/Bootstrap.cmake")
 endif()
